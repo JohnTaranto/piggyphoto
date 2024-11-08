@@ -189,6 +189,9 @@ class libgphoto2error(Exception):
         self.result = result
         self.message = message
     def __str__(self):
+        # Decode message if it's in bytes, otherwise leave it as is
+        if isinstance(self.message, bytes):
+            self.message = self.message.decode('utf-8')
         return self.message + ' (' + str(self.result) + ')'
 
 def check(result):
