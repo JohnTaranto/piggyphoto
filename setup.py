@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="piggyphoto",
-    version="0.3",
+    version="0.4",
     description="Python wrapper for libgphoto2",
     author="alexdu",
     packages=["piggyphoto"],

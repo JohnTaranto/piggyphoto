@@ -329,7 +329,9 @@ class camera(object):
 
     def download_file(self, srcfolder, srcfilename, destpath):
         cfile = cameraFile(self._cam, srcfolder, srcfilename)
-        cfile.save(destpath)
+        file_location = destpath.encode('utf-8') if isinstance(destpath, bytes) else destpath
+
+        cfile.save(file_location)
         gp.gp_file_unref(cfile._cf)
 
     def trigger_capture(self):
