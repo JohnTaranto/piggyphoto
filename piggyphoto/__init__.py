@@ -333,9 +333,7 @@ class camera(object):
         folder = srcfolder.decode('utf-8') if isinstance(srcfolder, bytes) else srcfolder
         name = srcfilename.decode('utf-8') if isinstance(srcfilename, bytes) else srcfilename
 
-        file_location = destpath.encode('utf-8') if isinstance(destpath, bytes) else destpath
-
-        cfile.save(file_location)
+        cfile.save(destpath)
         gp.gp_file_unref(cfile._cf)
 
     def trigger_capture(self):
@@ -388,8 +386,8 @@ class cameraFile(object):
 
     def save(self, filename = None):
         if filename is None: filename = self.name
-        filename.decode('utf-8')
-        check(gp.gp_file_save(self._cf, filename))
+        x = filename.decode('utf-8')
+        check(gp.gp_file_save(self._cf, x))
 
     def ref(self):
         check(gp.gp_file_ref(self._cf))
