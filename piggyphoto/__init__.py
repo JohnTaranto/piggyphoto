@@ -328,11 +328,11 @@ class camera(object):
             return cfile
 
     def download_file(self, srcfolder, srcfilename, destpath):
+        cfile = cameraFile(self._cam, srcfolder, srcfilename)
+
         folder = srcfolder.decode('utf-8') if isinstance(srcfolder, bytes) else srcfolder
         name = srcfilename.decode('utf-8') if isinstance(srcfilename, bytes) else srcfilename
         destpath_decoded = destpath.decode('utf-8') if isinstance(destpath, bytes) else destpath
-        
-        cfile = cameraFile(self._cam, folder, name)
 
         cfile.save(destpath_decoded)
         gp.gp_file_unref(cfile._cf)
